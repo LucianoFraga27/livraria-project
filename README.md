@@ -1,58 +1,56 @@
 # Projeto de Livraria
 
-Este é um projeto simples para uma livraria, com o objetivo de gerenciar empréstimos de livros, clientes, autores e editoras. O projeto utiliza classes como `Emprestimo`, `Cliente`, `Livro`, `Autor` e `Editora` para representar as entidades relacionadas à livraria.
+Este é um projeto simples para uma livraria, com o objetivo de gerenciar empréstimos de livros para clientes. O projeto utiliza classes como `Emprestimo`, `Cliente`, `Livro`, `Autor` para representar as entidades relacionadas à livraria.
 
-## Diagrama de Classes
+## Modelo Entidade Relacionamento 
 
-A seguir, apresentamos o diagrama de classes atualizado do projeto:
+> **Observação**: É importante destacar que o MER (Modelo Entidade-Relacionamento) está em constante evolução, uma vez que estou aprendendo a utilizar a ferramenta mermaid para representá-lo. Neste estágio inicial, o MER pode não refletir com total fidelidade o que está sendo desenvolvido e está sujeito a modificações e ajustes futuros.
+
+A seguir, apresentamos o MER atualizado do projeto:
 
 ```mermaid
-classDiagram
+erDiagram
 
-    Cliente --> Emprestimo
-    Emprestimo <-- Livro
-    Autor --> Livro
-    Editora --> Livro
+    autor ||--|{ livro_autor: ""
+    livro_autor ||--|{ livro : ""
+    livro ||--|{ emprestimo : ""
+    cliente ||--|{emprestimo: ""
     
-    class Emprestimo{
-        -dataEmprestimo: OffsetDateTime
-        -dataPrevistaParaDevolucao: OffsetDateTime
-        -dateDevolucao: OffsetDateTime
-        -notificarAtraso()
+    emprestimo {
+        Long id_livro
+        Long id_cliente
+        OffsetDateTime dataEmprestimo
+        OffsetDateTime dataPrevistaDevolucao
+        OffsetDateTime dataDevolucao
+    }
+
+    livro {
+        Long id
+        String titulo
+        String descricao
+	String genero
+        String editora
+        Enum status
+        Date dataPublicacao
+    }
+
+    autor {
+        Long id
+        String nome
+    }
+
+    livro_autor {
+        Long id_autor
+        Long id_livro
+    }
+
+    cliente {
+        Long id
+        String nome
+        String email
+        String cpf
     }
     
-    class Cliente{
-        -nome: String
-        -cpf: String
-        -email: String
-
-        -inserir()
-        -consultar()
-        -excluir()
-        -alterar()
-    }
-
-    class Livro {
-        -titulo: String
-        -ISBN: String
-        -descricao: String
-        -genero: String
-        -ano: Date
-        -status: Status
-        
-        -inserir()
-        -consultar()
-        -excluir()
-        -alterar()
-    }
-
-    class Autor {
-        -nome: String
-    }
-
-    class Editora {
-        -nome: String
-    }
 ```
 
 ## Funcionalidades
@@ -66,8 +64,7 @@ O projeto de livraria possui as seguintes funcionalidades:
 - **Emprestimo**: A classe `Emprestimo` representa o empréstimo de um livro, contendo informações sobre a data de empréstimo, a data prevista para devolução e a data de devolução efetiva. Além disso, possui um método para notificar atraso.
 
 - **Autor**: A classe `Autor` representa um autor de livros, contendo informações como nome. É associada aos livros por meio de uma relação. Podendo ter uma ou mais autores.
-
-- **Editora**: A classe `Editora` representa uma editora de livros, contendo informações como nome. É associada aos livros por meio de uma relação. Podendo ter uma ou mais editoras.
+ 
 
 As funcionalidades mencionadas permitem que a livraria gerencie empréstimos de livros, cadastre e gerencie clientes, controle informações sobre os livros disponíveis, bem como associe autores e editoras aos livros.
 
