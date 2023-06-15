@@ -9,7 +9,12 @@ import com.stoica.livraria.domain.model.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
+
+	Optional<Cliente> findByEmail(String email);
+	
 	Optional<Cliente> findByCpf(String cpf);
 	
 	void deleteByCpf(String cpf);
+	
+
 }

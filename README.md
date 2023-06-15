@@ -11,9 +11,9 @@ A seguir, apresentamos o MER atualizado do projeto:
 ```mermaid
 erDiagram
 
-    autor ||--|{ livro_autor: ""
-    livro_autor ||--|{ livro : ""
-    livro ||--|{ emprestimo : ""
+    autor ||--|| livro_autor: ""
+    livro_autor }|--|| livro : ""
+    livro ||--|| emprestimo : ""
     cliente ||--|{emprestimo: ""
     
     emprestimo {

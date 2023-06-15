@@ -2,6 +2,8 @@ package com.stoica.livraria.domain.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,11 @@ public class CadastroLivroService {
 
 	@Autowired
 	LivroRepository livroRepository;
+	
+	public List<Livro> listarLivros(){
+		return livroRepository.findAll();
+	}
+	
 	
 	public Livro encontrarLivro(Long id) {
 		return livroRepository.findById(id).orElseThrow(
