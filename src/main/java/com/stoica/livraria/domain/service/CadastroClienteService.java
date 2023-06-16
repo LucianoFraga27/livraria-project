@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.stoica.livraria.domain.exception.ClienteNaoEncontradoException;
@@ -26,12 +25,12 @@ public class CadastroClienteService {
 		return clienteRepository.findAll();
 	}
 	
-	public Cliente encontrarCliente(String cpf) {
+	public Cliente encontrarClientePeloCPF(String cpf) {
 		return clienteRepository.findByCpf(cpf).orElseThrow(
 				() -> new CpfClienteNaoEncontradoException(cpf));
 	}
 	
-	public Cliente encontrarClienteId(Long id) {
+	public Cliente encontrarClientePeloID(Long id) {
 		return clienteRepository.findById(id).orElseThrow(
 				() -> new ClienteNaoEncontradoException(id));
 	}
@@ -71,21 +70,16 @@ public class CadastroClienteService {
 	
 	@Transactional
 	public void editarCliente(Long id, Cliente cliente) {
-	
-		Cliente clienteAtual = encontrarClienteId(id);
+		Cliente clienteAtual = encontrarClientePeloID(id);
 		BeanUtils.copyProperties(cliente, clienteAtual, "id", "cpf", "email");
 		salvarCliente(clienteAtual, true);
-	
 	}
-	
 	
 	@Transactional
 	public void removerCLiente(Long id) {
-		
 		if(clienteRepository.findById(id).isEmpty()) {
 			throw new ClienteNaoEncontradoException(id);
 		}
-		
 		clienteRepository.deleteById(id);
 	}
 	
