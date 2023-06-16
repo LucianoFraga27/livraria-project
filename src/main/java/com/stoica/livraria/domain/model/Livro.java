@@ -31,6 +31,9 @@ public class Livro {
 	private String titulo;
 	
 	@NotBlank
+	private String editora;
+	
+	@NotBlank
 	private String descricao;
 	
 	private Date dataPublicacao;

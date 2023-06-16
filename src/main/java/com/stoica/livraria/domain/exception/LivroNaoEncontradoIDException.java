@@ -1,6 +1,6 @@
 package com.stoica.livraria.domain.exception;
 
-public class LivroNaoEncontradoException extends NegocioException{
+public class LivroNaoEncontradoIDException extends NegocioException{
 
 	/**
 	 * 
@@ -10,7 +10,7 @@ public class LivroNaoEncontradoException extends NegocioException{
 	
 	private static final String MENSAGEM_LIVRO_INEXISTENTE = "Livro com o ID '%l', não foi encontrado.";
 	
-	public LivroNaoEncontradoException(Long mensagem) {
+	public LivroNaoEncontradoIDException(Long mensagem) {
 		super(String.format(MENSAGEM_LIVRO_INEXISTENTE, mensagem)); 
 	}
 
