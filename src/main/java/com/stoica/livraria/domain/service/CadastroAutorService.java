@@ -28,6 +28,10 @@ public class CadastroAutorService {
 				() -> new AutorNaoEncontradoException(id));
 	}
 	
+	public List<Autor> encontrarAutorPeloNome(String nome) {
+		return autorRepository.findByNomeContaining(nome);
+	}
+	
 	@Transactional
 	public Autor salvarAutor(Autor autor) {
 		return autorRepository.save(autor);

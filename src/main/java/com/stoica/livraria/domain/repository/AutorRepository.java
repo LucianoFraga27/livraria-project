@@ -9,5 +9,6 @@ import com.stoica.livraria.domain.model.Autor;
 public interface AutorRepository extends JpaRepository<Autor, Long>{
 
 	List<Autor> findByNome(String nome);
-	
+
+	List<Autor> findByNomeContaining(String nome);
 }
