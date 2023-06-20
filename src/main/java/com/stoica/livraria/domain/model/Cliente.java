@@ -2,6 +2,7 @@ package com.stoica.livraria.domain.model;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +28,8 @@ public class Cliente {
 	@Email
 	private String email;
 	
+	
 	@CPF
+	@Column(nullable=false)
 	private String cpf;
 }
