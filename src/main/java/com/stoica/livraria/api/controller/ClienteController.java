@@ -50,7 +50,7 @@ public class ClienteController {
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@PostMapping("/adicionar")
 	public Cliente adicionarCliente( @RequestBody @Valid Cliente cliente) {
-		return clienteService.salvarCliente(cliente, false);
+		return clienteService.salvarCliente(cliente);
 	}
 	
 	@DeleteMapping("/remover/{id}")

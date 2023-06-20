@@ -11,6 +11,4 @@ public class RegistroEmprestimoService {
 
 	public  OffsetDateTime currentDateTime = OffsetDateTime.now();
 	
-	
-	
 }

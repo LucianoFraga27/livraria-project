@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.ISBN;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -42,6 +44,7 @@ public class Livro {
 	
 	private Status status;
 	
+	@JsonIgnoreProperties(value={"nome"}, allowGetters = true)
 	@ManyToMany
 	private List<Autor> autor;
 }

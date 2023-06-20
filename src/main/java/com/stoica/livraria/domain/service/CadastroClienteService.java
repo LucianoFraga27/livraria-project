@@ -36,9 +36,9 @@ public class CadastroClienteService {
 	}
 	
 	@Transactional
-	public Cliente salvarCliente (Cliente cliente, Boolean edicao) {
+	public Cliente salvarCliente (Cliente cliente) {
 		
-		if (!edicao) {
+		
 			clienteRepository.findByCpf(cliente.getCpf()).ifPresent(
 					c -> {
 						throw new CpfExistenteException(c.getCpf());
@@ -48,31 +48,34 @@ public class CadastroClienteService {
 						throw new EmailExistenteException(c.getEmail());
 					});
 			
-		} else if (edicao){
-			Cliente clienteExistente = clienteRepository.findById(cliente.getId())
-	                .orElseThrow(() -> new ClienteNaoEncontradoException(cliente.getId()));
-
-	        if (!clienteExistente.getCpf().equals(cliente.getCpf())) {
-	            clienteRepository.findByCpf(cliente.getCpf()).ifPresent(c -> {
-	                throw new CpfExistenteException(c.getCpf());
-	            });
-	        }
-
-	        if (!clienteExistente.getEmail().equals(cliente.getEmail())) {
-	            clienteRepository.findByEmail(cliente.getEmail()).ifPresent(c -> {
-	                throw new EmailExistenteException(c.getEmail());
-	            });
-	        }
-		}
+	
 		
 		return clienteRepository.save(cliente);
 	}
 	
 	@Transactional
 	public void editarCliente(Long id, Cliente cliente) {
+		
 		Cliente clienteAtual = encontrarClientePeloID(id);
-		BeanUtils.copyProperties(cliente, clienteAtual, "id", "cpf", "email");
-		salvarCliente(clienteAtual, true);
+	
+		
+		if (!clienteAtual.getCpf().equals(cliente.getCpf())) {
+			clienteRepository.findByCpf(cliente.getCpf()).ifPresent(
+					c -> {
+						throw new CpfExistenteException(c.getCpf());
+					});
+		}
+		
+		if (!clienteAtual.getEmail().equals(cliente.getEmail())) {
+	        clienteRepository.findByEmail(cliente.getEmail()).ifPresent(c -> {
+	            throw new EmailExistenteException(c.getEmail());
+	        });
+	    }
+		
+		BeanUtils.copyProperties(cliente, clienteAtual, "id");
+
+		clienteRepository.save(clienteAtual);
+		
 	}
 	
 	@Transactional

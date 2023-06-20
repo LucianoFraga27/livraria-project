@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stoica.livraria.domain.exception.AutorNaoEncontradoException;
 import com.stoica.livraria.domain.exception.IsbnExistenteException;
 import com.stoica.livraria.domain.exception.LivroNaoEncontradoIDException;
 import com.stoica.livraria.domain.exception.LivroNaoEncontradoISBNException;
+import com.stoica.livraria.domain.model.Autor;
 import com.stoica.livraria.domain.model.Livro;
 import com.stoica.livraria.domain.repository.LivroRepository;
 
@@ -39,26 +41,24 @@ public class CadastroLivroService {
 	}
 
 	@Transactional
-	public Livro salvarLivro(Livro livro, Boolean edicao) {
+	public Livro salvarLivro(Livro livro) {
 
-		if (!edicao) {
+		
 			livroRepository.findByISBN(livro.getISBN()).ifPresent(l -> {
 				throw new IsbnExistenteException(l.getISBN());
 			});
-		} else if (edicao) {
-			Livro livroExistente = livroRepository.findByISBN(livro.getISBN())
-					.orElseThrow(() -> new LivroNaoEncontradoISBNException(livro.getISBN()));
-			if (!livroExistente.getISBN().equals(livro.getISBN())) {
-				livroRepository.findByISBN(livro.getISBN()).ifPresent(c -> {
-					throw new IsbnExistenteException(livro.getISBN());
-				});
-			}
-		}
-
-		autorService.SeNaoEncontrarAutorCria(livro.getAutor());
-
+			
+			//List<Autor> autores =  autorService.encontrarAutores(livro.getAutor());
+			//livro.setAutor(autores);
 		return livroRepository.save(livro);
 	}
+	
+	@Transactional
+	public Livro editarLivro(Long id) {
+		return null;
+	}
+	
+	
 
 	@Transactional
 	void removerLivro(Long id) {
