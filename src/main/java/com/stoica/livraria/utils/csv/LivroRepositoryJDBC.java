@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.repository;
+package com.stoica.livraria.utils.csv;
 
 import java.util.List;
 
@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.stoica.livraria.domain.model.Modelo;
-import com.stoica.livraria.domain.util.GerarCsv;
-
 @Repository
-public class LivroRepositoryJDBC {
+class LivroRepositoryJDBC {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -35,7 +32,7 @@ public class LivroRepositoryJDBC {
 	        return modelo;
 	    });
 	    
-	    gerarCSV.gerarArquivoCSV(resultados, "C:\\desenv\\java-workspace\\livraria\\livraria\\src\\main\\java\\com\\stoica\\livraria\\domain\\util\\arquivo.csv");
+	    gerarCSV.gerarArquivoCSV(resultados, "C:\\desenv\\java-workspace\\livraria\\livraria\\src\\main\\java\\com\\stoica\\livraria\\modulo\\util\\arquivo.csv");
 	    
 	    return resultados;
 	}

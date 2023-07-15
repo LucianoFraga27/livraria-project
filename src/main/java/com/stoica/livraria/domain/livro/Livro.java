@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.model;
+package com.stoica.livraria.domain.livro;
 
 import java.sql.Date;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.validator.constraints.ISBN;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.stoica.livraria.domain.autor.Autor;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

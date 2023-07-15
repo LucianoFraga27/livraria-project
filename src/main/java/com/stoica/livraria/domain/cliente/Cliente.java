@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.model;
+package com.stoica.livraria.domain.cliente;
 
 import org.hibernate.validator.constraints.br.CPF;
 

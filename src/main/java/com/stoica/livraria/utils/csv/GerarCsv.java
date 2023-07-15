@@ -1,12 +1,10 @@
-package com.stoica.livraria.domain.util;
+package com.stoica.livraria.utils.csv;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-
-import com.stoica.livraria.domain.model.Modelo;
 
 @Component
 public class GerarCsv {

@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.model;
+package com.stoica.livraria.domain.livro;
 
 public enum Status {
 

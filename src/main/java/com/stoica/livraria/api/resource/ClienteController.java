@@ -1,4 +1,4 @@
-package com.stoica.livraria.api.controller;
+package com.stoica.livraria.api.resource;
 
 import java.util.List;
 
@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stoica.livraria.domain.model.Cliente;
-import com.stoica.livraria.domain.service.CadastroClienteService;
-
+import com.stoica.livraria.domain.cliente.Cliente;
+import com.stoica.livraria.domain.cliente.ClienteService;
 import jakarta.validation.Valid;
 
 @RestController
@@ -25,7 +24,7 @@ import jakarta.validation.Valid;
 public class ClienteController {
 
 	@Autowired
-	CadastroClienteService clienteService;
+	ClienteService clienteService;
 	
 	@GetMapping
 	public String sobreClientes() {

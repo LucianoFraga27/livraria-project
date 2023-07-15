@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.model;
+package com.stoica.livraria.domain.autor;
 
 
 import jakarta.persistence.Entity;

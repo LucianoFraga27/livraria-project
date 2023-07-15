@@ -1,4 +1,4 @@
-package com.stoica.livraria.api.controller;
+package com.stoica.livraria.api.resource;
 
 import java.util.List;
 
@@ -10,34 +10,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stoica.livraria.domain.model.Autor;
-import com.stoica.livraria.domain.service.CadastroAutorService;
+import com.stoica.livraria.domain.autor.Autor;
+import com.stoica.livraria.domain.autor.AutorService;
 
 @RestController
 @RequestMapping("/autores")
 public class AutorController {
 
 	@Autowired
-	CadastroAutorService autorService;
-
+	AutorService cadastroAutor;
+	
 	@GetMapping("/todos")
 	public List<Autor> listarAutores(){
-		return autorService.listarAutores();
+		return cadastroAutor.listarAutores();
 	}
 	
 	@GetMapping("/id/{id}")
 	public Autor encontrarAutorPeloID(@PathVariable(value="id") Long id){
-		return autorService.encontrarAutorPeloID(id);
+		return cadastroAutor.encontrarAutorPeloID(id);
 	}
 	
 	@GetMapping("/nome/{nome}")
 	public List<Autor> encontrarAutorPeloNome(@PathVariable(value="nome") String nome){
-		return autorService.encontrarAutorPeloNome(nome);
+		return cadastroAutor.encontrarAutorPeloNome(nome);
 	}
 	
 	@PostMapping("/adicionar")
 	public Autor salvarAutor(@RequestBody Autor autor) {
-		return autorService.salvarAutor(autor);
+		return cadastroAutor.salvarAutor(autor);
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.model;
+package com.stoica.livraria.utils.csv;
 
 import java.sql.Date;
 import java.util.List;

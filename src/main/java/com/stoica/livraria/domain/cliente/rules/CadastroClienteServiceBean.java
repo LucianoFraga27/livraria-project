@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.service;
+package com.stoica.livraria.domain.cliente.rules;
 
 import java.util.List;
 
@@ -6,17 +6,17 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stoica.livraria.domain.cliente.Cliente;
+import com.stoica.livraria.domain.cliente.ClienteService;
 import com.stoica.livraria.domain.exception.ClienteNaoEncontradoException;
 import com.stoica.livraria.domain.exception.CpfClienteNaoEncontradoException;
 import com.stoica.livraria.domain.exception.CpfExistenteException;
 import com.stoica.livraria.domain.exception.EmailExistenteException;
-import com.stoica.livraria.domain.model.Cliente;
-import com.stoica.livraria.domain.repository.ClienteRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class CadastroClienteService {
+class CadastroClienteServiceBean implements ClienteService{
 
 	@Autowired
 	ClienteRepository clienteRepository;
@@ -37,8 +37,6 @@ public class CadastroClienteService {
 	
 	@Transactional
 	public Cliente salvarCliente (Cliente cliente) {
-		
-		
 			clienteRepository.findByCpf(cliente.getCpf()).ifPresent(
 					c -> {
 						throw new CpfExistenteException(c.getCpf());
@@ -47,9 +45,6 @@ public class CadastroClienteService {
 					c -> {
 						throw new EmailExistenteException(c.getEmail());
 					});
-			
-	
-		
 		return clienteRepository.save(cliente);
 	}
 	

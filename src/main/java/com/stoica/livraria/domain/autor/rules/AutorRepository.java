@@ -1,12 +1,12 @@
-package com.stoica.livraria.domain.repository;
+package com.stoica.livraria.domain.autor.rules;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.stoica.livraria.domain.model.Autor;
+import com.stoica.livraria.domain.autor.Autor;
 
-public interface AutorRepository extends JpaRepository<Autor, Long>{
+interface AutorRepository extends JpaRepository<Autor, Long>{
 
 	List<Autor> findByNome(String nome);
 

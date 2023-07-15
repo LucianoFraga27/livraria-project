@@ -1,13 +1,9 @@
-package com.stoica.livraria.domain.service;
+package com.stoica.livraria.utils.csv;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.stoica.livraria.domain.model.Modelo;
-import com.stoica.livraria.domain.repository.LivroRepositoryJDBC;
-import com.stoica.livraria.domain.util.GerarCsv;
 
 @Service
 public class ModeloService {

@@ -1,10 +1,10 @@
-package com.stoica.livraria.domain.repository;
+package com.stoica.livraria.domain.cliente.rules;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.stoica.livraria.domain.model.Cliente;
+import com.stoica.livraria.domain.cliente.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 
