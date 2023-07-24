@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stoica.livraria.domain.autor.Autor;
+import com.stoica.livraria.domain.autor.AutorService;
 import com.stoica.livraria.domain.exception.AutorNaoEncontradoException;
 import com.stoica.livraria.domain.exception.IsbnExistenteException;
 import com.stoica.livraria.domain.exception.LivroNaoEncontradoIDException;
@@ -20,7 +21,9 @@ class CadastroLivroServiceBean implements LivroService{
 
 	@Autowired
 	LivroRepository livroRepository;
-
+	
+	@Autowired
+	AutorService autorService;
 
 	public List<Livro> listarLivrosTodos() {
 		return livroRepository.findAll();
@@ -50,8 +53,8 @@ class CadastroLivroServiceBean implements LivroService{
 				throw new IsbnExistenteException(l.getISBN());
 			});
 			
-			//List<Autor> autores =  autorService.encontrarAutores(livro.getAutor());
-			//livro.setAutor(autores);
+			List<Autor> autores =  autorService.SeNaoEncontrarAutorCria(livro.getAutor());
+			livro.setAutor(autores);
 		return livroRepository.save(livro);
 	}
 	

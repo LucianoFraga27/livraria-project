@@ -14,5 +14,6 @@ public interface AutorService {
 
 	Autor salvarAutor(Autor autor);
 	
-
+	List<Autor> SeNaoEncontrarAutorCria(List<Autor> autores);
+	
 }
