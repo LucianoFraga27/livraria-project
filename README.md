@@ -10,27 +10,46 @@ A seguir, apresentamos o MER atualizado do projeto:
 
 ```mermaid
 erDiagram
+    cliente ||--|{aluguel: ""
     autor ||--|| livro_autor: ""
     livro_autor }|--|| livro : ""
-    livro ||--|| emprestimo : ""
-    cliente ||--|{emprestimo: ""
-    emprestimo {
-        Long id_livro
+    livro ||--|| aluguel : ""
+    aluguel_livro }|--|| livro : ""
+    aluguel_livro }|--|{ aluguel : ""
+    
+    cliente {
+        Long id
+        String nome
+        String email
+        String cpf
+    }
+    
+    aluguel {
+        Long id
         Long id_cliente
-        OffsetDateTime dataEmprestimo
+        OffsetDateTime data
         OffsetDateTime dataPrevistaDevolucao
         OffsetDateTime dataDevolucao
+        String status
     }
+  
     livro {
         Long id
-	String ISBN
+	    String ISBN
         String titulo
         String descricao
-	String genero
+	    String genero
         String editora
         Enum status
         Date dataPublicacao
     }
+    
+    aluguel_livro{
+        Long id
+        Long aluguel_id
+        Long livro_id
+    }
+    
     autor {
         Long id
         String nome
@@ -39,12 +58,7 @@ erDiagram
         Long id_autor
         Long id_livro
     }
-    cliente {
-        Long id
-        String nome
-        String email
-        String cpf
-    }
+    
 ```
 
 ## Funcionalidades

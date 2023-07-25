@@ -43,7 +43,7 @@ public class Livro {
 
 	private Date dataPublicacao;
 	
-	private Status status;
+	private String status;
 	
 	@JsonIgnoreProperties(value={"nome"}, allowGetters = true)
 	@ManyToMany
