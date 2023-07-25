@@ -71,9 +71,6 @@ public class Aluguel {
 	        }
 	    }
 
-	@Transient 
-	public OffsetDateTime getDataPrevistaDevolucao() {
-		return dataPrevistaDevolucao;
-	}
+
 	      
 }
