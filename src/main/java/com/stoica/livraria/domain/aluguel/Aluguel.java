@@ -1,18 +1,13 @@
 package com.stoica.livraria.domain.aluguel;
 
-import java.sql.Date;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.stoica.livraria.domain.autor.Autor;
 import com.stoica.livraria.domain.cliente.Cliente;
 import com.stoica.livraria.domain.livro.Livro;
-import com.stoica.livraria.domain.livro.Status;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +18,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
-import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -32,7 +26,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Aluguel {
 
-	
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,7 +55,6 @@ public class Aluguel {
 	// ATRASADO , ALUGADO, DEVOLVIDO
 	private String status;
 	
-	
 	 @PrePersist
 	    public void prePersist() {
 	        if (dataPrevistaDevolucao == null) {
@@ -70,7 +62,4 @@ public class Aluguel {
 	            dataPrevistaDevolucao = OffsetDateTime.now().plusDays(7);
 	        }
 	    }
-
-
-	      
 }
