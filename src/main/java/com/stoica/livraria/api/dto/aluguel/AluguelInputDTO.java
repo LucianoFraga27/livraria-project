@@ -1,7 +1,11 @@
 package com.stoica.livraria.api.dto.aluguel;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.stoica.livraria.api.dto.cliente.ClienteInputAluguelDTO;
 import com.stoica.livraria.api.dto.livro.LivroInputAluguelDTO;
 import com.stoica.livraria.domain.livro.Livro;
@@ -19,9 +23,5 @@ public class AluguelInputDTO {
 	
 	@NotBlank
 	private List<LivroInputAluguelDTO> livros;
-	
-}
 
-/*COMPLETAR DTO. 
- * INSERIR MASSA DE DADOS PARA TESTE SERÁ A PRIMEIRA COISA A SE FAZER PÓS OS DTOS AFTERMIGRATE
- */
+}
