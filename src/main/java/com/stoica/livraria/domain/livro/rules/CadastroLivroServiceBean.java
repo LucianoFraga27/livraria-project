@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.stoica.livraria.domain.autor.Autor;
 import com.stoica.livraria.domain.autor.AutorService;
-import com.stoica.livraria.domain.exception.AutorNaoEncontradoException;
 import com.stoica.livraria.domain.exception.IsbnExistenteException;
 import com.stoica.livraria.domain.exception.LivroNaoEncontradoIDException;
 import com.stoica.livraria.domain.exception.LivroNaoEncontradoISBNException;

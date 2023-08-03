@@ -2,7 +2,6 @@ package com.stoica.livraria.domain.livro;
 
 import java.util.List;
 
-import jakarta.transaction.Transactional;
 
 public interface LivroService {
 

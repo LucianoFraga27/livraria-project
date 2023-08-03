@@ -24,4 +24,12 @@ public class RegistroAluguelServiceBean implements AluguelService{
 		return aluguelRepository.save(aluguel);
 	}
 	
+	@Override
+	public Aluguel encontrarPeloId(Long id) {
+		return aluguelRepository.findById(id).orElseThrow(
+				() -> {
+					throw new RuntimeException("Aluguel não encontrado Exception");
+				});
+	}
+	
 }
