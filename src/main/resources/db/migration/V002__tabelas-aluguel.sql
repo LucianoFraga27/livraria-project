@@ -4,7 +4,7 @@
   data DATETIME,
   data_prevista_devolucao DATETIME,
   data_devolucao DATETIME,
-  status VARCHAR(255),
+  status VARCHAR(255) default 'ALUGADO',
   FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 );
 

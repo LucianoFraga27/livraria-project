@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.aluguel.rules;
+package com.stoica.livraria.domain.aluguel.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

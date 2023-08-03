@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.autor.rules;
+package com.stoica.livraria.domain.autor.persistence;
 
 import java.util.ArrayList;
 import java.util.List;

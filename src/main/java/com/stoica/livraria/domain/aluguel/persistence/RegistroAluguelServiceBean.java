@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.aluguel.rules;
+package com.stoica.livraria.domain.aluguel.persistence;
 
 import java.util.List;
 
@@ -22,6 +22,14 @@ public class RegistroAluguelServiceBean implements AluguelService{
 	@Override
 	public Aluguel adicionar(Aluguel aluguel) {
 		return aluguelRepository.save(aluguel);
+	}
+	
+	@Override
+	public Aluguel encontrarPeloId(Long id) {
+		return aluguelRepository.findById(id).orElseThrow(
+				() -> {
+					throw new RuntimeException("Aluguel não encontrado Exception");
+				});
 	}
 	
 }

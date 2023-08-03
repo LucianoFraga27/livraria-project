@@ -1,4 +1,4 @@
-package com.stoica.livraria.domain.cliente.rules;
+package com.stoica.livraria.domain.cliente.persistence;
 
 import java.util.List;
 
