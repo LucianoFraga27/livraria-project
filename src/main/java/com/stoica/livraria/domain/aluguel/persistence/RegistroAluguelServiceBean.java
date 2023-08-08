@@ -28,15 +28,19 @@ public class RegistroAluguelServiceBean implements AluguelService{
 		return aluguelRepository.findAll();
 	}
 	
-	
 	@Override
-	@Transactional
 	public Aluguel adicionar(Aluguel aluguel) {
 		for(Livro livro : aluguel.getLivros()) {
-			System.err.println(livro.getStatus());
+			if("INDISPONIVEL".equals(livro.getStatus())) {
+				throw new RuntimeException(livro.getTitulo() + " Está indisponivel");
+			}
 			livroService.alterarStatus(livro.getId());
-			System.err.println(livro.getStatus());
 		}
+		return salvar(aluguel);
+	}
+	
+	@Transactional
+	private Aluguel salvar(Aluguel aluguel) {
 		return aluguelRepository.save(aluguel);
 	}
 	
