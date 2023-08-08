@@ -44,9 +44,7 @@ class CadastroLivroServiceBean implements LivroService{
 	}
 
 
-	@Transactional
-	public Livro salvarLivro(Livro livro) {
-
+	public Livro criarLivro(Livro livro) {
 		
 			livroRepository.findByISBN(livro.getISBN()).ifPresent(l -> {
 				throw new IsbnExistenteException(l.getISBN());
@@ -54,6 +52,11 @@ class CadastroLivroServiceBean implements LivroService{
 			
 			List<Autor> autores =  autorService.SeNaoEncontrarAutorCria(livro.getAutor());
 			livro.setAutor(autores);
+		return salvarLivro(livro);
+	}
+	
+	@Transactional
+	private Livro salvarLivro(Livro livro) {
 		return livroRepository.save(livro);
 	}
 	
@@ -63,10 +66,16 @@ class CadastroLivroServiceBean implements LivroService{
 	}
 	
 	
-
 	@Transactional
 	void removerLivro(Long id) {
 
 	}
-
+	
+	public Livro alterarStatus(Long id) {
+		Livro livro = encontrarLivroPeloID(id);
+		livro.setStatus(livro.getStatus().equals("DISPONIVEL") ? "INDISPONIVEL" : "DISPONIVEL");
+		return salvarLivro(livro);
+	}
+	
+	
 }

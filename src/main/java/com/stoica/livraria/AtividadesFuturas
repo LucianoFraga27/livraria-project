@@ -1,0 +1,32 @@
+Atividades futuras:
+
+-> future-status:
+*Criar endpoints para obter o status de um aluguel específico e de um livro específico.
+*Implementar a lógica para verificar o status do aluguel e do livro com base em regras de negócio específicas.
+*Validar os dados recebidos nas requisições para garantir que estão corretos antes de processá-los.
+
+-> future-testes:
+*Implementar testes automatizados para todos os endpoints da aplicação, incluindo testes unitários e testes de integração.
+*Utilizar ferramentas de testes como JUnit, Mockito e Spring Test para criar cenários de teste abrangentes e robustos.
+*Garantir a cobertura de código adequada nos testes para aumentar a confiabilidade do sistema.
+
+-> future-services:
+*Refatorar os serviços existentes para torná-los mais modulares, coesos e reutilizáveis.
+*Dividir serviços grandes em serviços menores e mais especializados para melhorar a manutenibilidade do código.
+
+-> future-logging:
+*Utilizar bibliotecas de logging, como SLF4J e Logback, para gerenciar e formatar os registros de log.
+*Configurar níveis de log adequados para diferentes ambientes (por exemplo, desenvolvimento, teste e produção).
+
+-> future-relatorios:
+*Criar endpoints para gerar relatórios específicos com base nos dados da aplicação.
+*Utilizar bibliotecas de geração de relatórios, como JasperReports, para criar os relatórios em diferentes formatos (PDF, Excel, etc.).
+*Personalizar os relatórios de acordo com as necessidades
+
+-> future-security:
+*Implementar autenticação e autorização para proteger os endpoints sensíveis da aplicação.
+
+->future-notificacoes:
+*Adicionar suporte a notificações para alertar os usuários que estão atrasados, ou que está perto do dia previsto para entregar os livros
+*Enviar notificações por e-mail, mensagens push ou outras formas de comunicação.
+

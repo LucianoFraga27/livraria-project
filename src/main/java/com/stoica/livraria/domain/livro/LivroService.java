@@ -13,8 +13,9 @@ public interface LivroService {
 
 	List<Livro> encontrarLivroPeloTitulo(String titulo);
 
-	Livro salvarLivro(Livro livro);
+	Livro criarLivro(Livro livro);
 
 	Livro editarLivro(Long id);
 
+	Livro alterarStatus(Long id);
 }

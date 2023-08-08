@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stoica.livraria.domain.autor.Autor;
@@ -12,11 +11,12 @@ import com.stoica.livraria.domain.autor.AutorService;
 import com.stoica.livraria.domain.exception.AutorNaoEncontradoException;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 class CadastroAutorServiceBean implements AutorService {
 
-	@Autowired
 	AutorRepository autorRepository;
 	
 	public List<Autor> listarAutores(){
@@ -41,7 +41,6 @@ class CadastroAutorServiceBean implements AutorService {
 	public List<Autor> SeNaoEncontrarAutorCria(List<Autor> autores) {
 		
 		List<Autor> autoresEncontrados = new ArrayList<>();
-		
 		for (Autor autor : autores) {
 			
 			Optional<Autor> autorTeste = autorRepository.findById(autor.getId());
@@ -60,7 +59,7 @@ class CadastroAutorServiceBean implements AutorService {
 		}
 		
 		return autoresEncontrados;
-		
 	}
-	
+
 }
+

@@ -20,6 +20,7 @@ public class AutorController {
 	@Autowired
 	AutorService cadastroAutor;
 	
+	
 	@GetMapping("/todos")
 	public List<Autor> listarAutores(){
 		return cadastroAutor.listarAutores();

@@ -39,8 +39,8 @@ public class LivroController {
 	}
 	
 	@PostMapping("/adicionar")
-	public Livro editarLivro (@RequestBody @Valid Livro livro) {
-		return livroService.salvarLivro(livro);
+	public Livro criarLivro (@RequestBody @Valid Livro livro) {
+		return livroService.criarLivro(livro);
 	}
 	
 	@PutMapping("/editar/{id}")
