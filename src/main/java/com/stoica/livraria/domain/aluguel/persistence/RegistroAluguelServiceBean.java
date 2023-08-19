@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class RegistroAluguelServiceBean implements AluguelService{
+class RegistroAluguelServiceBean implements AluguelService{
 	
 	@Autowired
 	AluguelRepository aluguelRepository;
@@ -39,6 +39,13 @@ public class RegistroAluguelServiceBean implements AluguelService{
 		return salvar(aluguel);
 	}
 	
+	public void devolucao(Long id) {
+		Aluguel aluguel = encontrarPeloId(id);
+		for (Livro livro : aluguel.getLivros()) {
+			livroService.alterarStatus(livro.getId());
+		}
+	}
+	
 	@Transactional
 	private Aluguel salvar(Aluguel aluguel) {
 		return aluguelRepository.save(aluguel);
@@ -50,6 +57,12 @@ public class RegistroAluguelServiceBean implements AluguelService{
 				() -> {
 					throw new RuntimeException("Aluguel não encontrado Exception");
 				});
+	}
+
+	@Override
+	public void devolucaoParcial(Long id, List<Livro> livros) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

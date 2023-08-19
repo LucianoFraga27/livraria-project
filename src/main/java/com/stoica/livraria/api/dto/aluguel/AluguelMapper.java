@@ -140,5 +140,9 @@ public class AluguelMapper {
 		return aluguelOutput;
 	}
 	
+	public void devolucao(Long id) {
+		aluguelService.devolucao(id);
+	}
+	
 	
 }
