@@ -10,5 +10,6 @@ public interface AluguelService {
 	Aluguel encontrarPeloId(Long id);
 	Aluguel adicionar(Aluguel aluguel);
 	void devolucao(Long id);
-	void devolucaoParcial(Long id,List<Livro> livros);
+	void devolucaoParcial(Long idAluguel, Long[] idLivros);
+	
 }

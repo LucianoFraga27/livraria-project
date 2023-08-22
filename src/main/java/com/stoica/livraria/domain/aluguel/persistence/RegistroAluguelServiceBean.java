@@ -39,10 +39,31 @@ class RegistroAluguelServiceBean implements AluguelService{
 		return salvar(aluguel);
 	}
 	
+	@Transactional
 	public void devolucao(Long id) {
 		Aluguel aluguel = encontrarPeloId(id);
 		for (Livro livro : aluguel.getLivros()) {
 			livroService.alterarStatus(livro.getId());
+		}
+	}
+	
+	@Transactional
+	@Override
+	public void devolucaoParcial(Long idAluguel, Long[] idLivros) {
+		if(idLivros.length > 0) {
+			Aluguel aluguel = encontrarPeloId(idAluguel);
+			List<Livro> livros = aluguel.getLivros();
+			for(int i = 0; i < livros.size() ; i++ ) {
+				for(int j = 0; j < idLivros.length ; j ++) {
+					if (livros.get(i).getId().equals(idLivros[j])) {
+	                    System.out.println("Livro ID " + idLivros[j] + " é igual ao livro da lista.");
+	                } else {
+	                	System.err.println("Diferenete");
+	                }
+				}
+			}	
+		} else {
+			System.err.println("Nenhum livro foi informado.");
 		}
 	}
 	
@@ -57,12 +78,6 @@ class RegistroAluguelServiceBean implements AluguelService{
 				() -> {
 					throw new RuntimeException("Aluguel não encontrado Exception");
 				});
-	}
-
-	@Override
-	public void devolucaoParcial(Long id, List<Livro> livros) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	

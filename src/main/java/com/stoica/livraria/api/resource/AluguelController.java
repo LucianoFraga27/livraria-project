@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stoica.livraria.api.dto.aluguel.AluguelInputDTO;
 import com.stoica.livraria.api.dto.aluguel.AluguelMapper;
 import com.stoica.livraria.api.dto.aluguel.AluguelOutputDTO;
+import com.stoica.livraria.api.dto.aluguel.ListaLivrosDevolucaoDTO;
+import com.stoica.livraria.domain.aluguel.AluguelService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +23,6 @@ import lombok.RequiredArgsConstructor;
 public class AluguelController {
 	
 	private final AluguelMapper aluguelMapper;
-	
 	
 	@GetMapping("")
 	public List<AluguelOutputDTO> listar(){
@@ -41,6 +42,11 @@ public class AluguelController {
 	@PutMapping("/devolucao/{id}")
 	public void devolucao(@PathVariable("id") Long id) {
 		aluguelMapper.devolucao(id);
+	}
+	
+	@PutMapping("/devolucao-parcial/{id}")
+	public void devolucaoParcial (@PathVariable("id") Long id, @RequestBody ListaLivrosDevolucaoDTO listaLivrosDevolucao) {
+		aluguelMapper.devolucaoParcial(id, listaLivrosDevolucao);
 	}
 	
 	

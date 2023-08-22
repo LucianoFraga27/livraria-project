@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.stoica.livraria.api.dto.cliente.ClienteOutputAluguelDTO;
 import com.stoica.livraria.api.dto.livro.LivroInputAluguelDTO;
@@ -144,5 +146,9 @@ public class AluguelMapper {
 		aluguelService.devolucao(id);
 	}
 	
+	public void devolucaoParcial(Long id, ListaLivrosDevolucaoDTO listaLivrosDevolucao) {
+		Long[] listaLivros = listaLivrosDevolucao.getIdLivros();
+		aluguelService.devolucaoParcial(id, listaLivros);
+	}
 	
 }
