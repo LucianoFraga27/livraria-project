@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS aluguel_livro (
   id BIGINT AUTO_INCREMENT,
   aluguel_id BIGINT,
   livro_id BIGINT,
+  status VARCHAR(255) default 'PENDENTE',
   PRIMARY KEY (id),
   FOREIGN KEY (aluguel_id) REFERENCES aluguel(id),
   FOREIGN KEY (livro_id) REFERENCES livro(id)

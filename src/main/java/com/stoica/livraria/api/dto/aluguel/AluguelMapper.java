@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.stoica.livraria.api.dto.cliente.ClienteOutputAluguelDTO;
 import com.stoica.livraria.api.dto.livro.LivroInputAluguelDTO;
@@ -109,7 +107,7 @@ public class AluguelMapper {
 		Aluguel aluguelCriado = new Aluguel();
 		aluguelCriado.setCliente(clienteEnviado);
 		aluguelCriado.setLivros(livrosEnviados);
-		
+		aluguelCriado.setStatus("ALUGADO");
 		aluguelService.adicionar(aluguelCriado);
 		
 		AluguelOutputDTO aluguelOutput = new AluguelOutputDTO();
@@ -134,7 +132,7 @@ public class AluguelMapper {
 			livroOutputAluguelDTO.add(livroOutput);
 			
 		}
-		
+	
 		aluguelOutput.setLivros(livroOutputAluguelDTO);
 		aluguelOutput.setId(aluguelCriado.getId());
 		aluguelOutput.setData(OffsetDateTime.now());

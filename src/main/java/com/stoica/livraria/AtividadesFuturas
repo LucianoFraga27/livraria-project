@@ -5,14 +5,20 @@ Atividades futuras:
 *Implementar a lógica para verificar o status do aluguel e do livro com base em regras de negócio específicas.
 *Validar os dados recebidos nas requisições para garantir que estão corretos antes de processá-los.
 
+-> future-status-enum
+* melhorando os status dos livros para ENUMERADO
+
 -> future-imagens
+* enviando a capa dos livros para o serviço
 
 -> future-swagger
+* Documentando a API
 
 -> future-testes:
 *Implementar testes automatizados para todos os endpoints da aplicação, incluindo testes unitários e testes de integração.
 *Utilizar ferramentas de testes como JUnit, Mockito e Spring Test para criar cenários de teste abrangentes e robustos.
 *Garantir a cobertura de código adequada nos testes para aumentar a confiabilidade do sistema.
+// Services // Integração
 
 -> future-services:
 *Refatorar os serviços existentes para torná-los mais modulares, coesos e reutilizáveis.

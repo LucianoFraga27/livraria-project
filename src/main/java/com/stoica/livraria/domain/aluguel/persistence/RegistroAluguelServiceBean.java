@@ -1,6 +1,9 @@
 package com.stoica.livraria.domain.aluguel.persistence;
 
+import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,26 +48,35 @@ class RegistroAluguelServiceBean implements AluguelService{
 		for (Livro livro : aluguel.getLivros()) {
 			livroService.alterarStatus(livro.getId());
 		}
+		aluguel.setDataDevolucao(OffsetDateTime.now());
+		aluguel.setStatus("FINALIZADO");
 	}
 	
 	@Transactional
 	@Override
 	public void devolucaoParcial(Long idAluguel, Long[] idLivros) {
+		Set<Long> livrosSelecionados = new HashSet<>();
 		if(idLivros.length > 0) {
 			Aluguel aluguel = encontrarPeloId(idAluguel);
 			List<Livro> livros = aluguel.getLivros();
 			for(int i = 0; i < livros.size() ; i++ ) {
 				for(int j = 0; j < idLivros.length ; j ++) {
 					if (livros.get(i).getId().equals(idLivros[j])) {
-	                    System.out.println("Livro ID " + idLivros[j] + " é igual ao livro da lista.");
+						livrosSelecionados.add(idLivros[j]);
 	                } else {
-	                	System.err.println("Diferenete");
+	                	System.err.println("Livro ID " + idLivros[j] + " não foi registrado nesse Aluguel.");
 	                }
 				}
-			}	
+			}
+			for (Long livro : livrosSelecionados) {
+				livroService.alterarStatus(livro);
+				System.out.println("Livro ID " + livro + " -> DEVOLVIDO.");
+			}
+			aluguel.setStatus("PENDENTE");
 		} else {
 			System.err.println("Nenhum livro foi informado.");
 		}
+		
 	}
 	
 	@Transactional
