@@ -21,8 +21,13 @@ public class AutorControllerV1 {
 
 	AutorService cadastroAutor;
 	
+
+	@GetMapping
+	public String sobreAutores() {
+		return "Endpoint /autores (explicar um pouco sobre esse endpoint)";
+	}
 	
-	@GetMapping("")
+	@GetMapping("/todos")
 	public List<Autor> listarAutores(){
 		return cadastroAutor.listarAutores();
 	}
@@ -37,7 +42,7 @@ public class AutorControllerV1 {
 		return cadastroAutor.encontrarAutorPeloNome(nome);
 	}
 	
-	@PostMapping("")
+	@PostMapping("/adicionar")
 	public Autor salvarAutor(@RequestBody Autor autor) {
 		return cadastroAutor.salvarAutor(autor);
 	}

@@ -20,8 +20,8 @@ import com.stoica.livraria.domain.cliente.ClienteService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/clientes")
-public class ClienteController {
+@RequestMapping("/v1/clientes")
+public class ClienteControllerV1 {
 
 	@Autowired
 	ClienteService clienteService;
@@ -59,8 +59,8 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/editar/{id}")
-	public void editarCliente(@PathVariable(value="id") Long id, @RequestBody @Valid Cliente cliente ) {
-		clienteService.editarCliente(id, cliente);
+	public Cliente editarCliente(@PathVariable(value="id") Long id, @RequestBody @Valid Cliente cliente ) {
+		return clienteService.editarCliente(id, cliente);
 	}
 	
 }

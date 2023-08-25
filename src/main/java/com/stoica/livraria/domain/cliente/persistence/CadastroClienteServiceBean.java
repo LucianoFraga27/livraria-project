@@ -49,10 +49,17 @@ class CadastroClienteServiceBean implements ClienteService{
 	}
 	
 	@Transactional
-	public void editarCliente(Long id, Cliente cliente) {
+	public Cliente editarCliente(Long id, Cliente cliente) {
 		
 		Cliente clienteAtual = encontrarClientePeloID(id);
 	
+		if(cliente.getCpf() == null) {
+			cliente.setCpf(clienteAtual.getCpf());
+		}
+		
+		if(cliente.getEmail() == null) {
+			cliente.setEmail(clienteAtual.getEmail());
+		}
 		
 		if (!clienteAtual.getCpf().equals(cliente.getCpf())) {
 			clienteRepository.findByCpf(cliente.getCpf()).ifPresent(
@@ -68,8 +75,8 @@ class CadastroClienteServiceBean implements ClienteService{
 	    }
 		
 		BeanUtils.copyProperties(cliente, clienteAtual, "id");
-
-		clienteRepository.save(clienteAtual);
+		
+		return clienteRepository.save(clienteAtual);
 		
 	}
 	
