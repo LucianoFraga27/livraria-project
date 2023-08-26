@@ -15,7 +15,7 @@ public interface LivroService {
 
 	Livro criarLivro(Livro livro);
 
-	Livro editarLivro(Long id);
+	Livro editarLivro(Long id, Livro livro);
 
 	Livro alterarStatus(Long id);
 }

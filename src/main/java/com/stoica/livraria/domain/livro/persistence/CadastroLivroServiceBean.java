@@ -2,6 +2,7 @@ package com.stoica.livraria.domain.livro.persistence;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +62,17 @@ class CadastroLivroServiceBean implements LivroService{
 	}
 	
 	@Transactional
-	public Livro editarLivro(Long id) {
-		return null;
+	public Livro editarLivro(Long id, Livro livro) {
+		Livro livroAtual = encontrarLivroPeloID(id);
+		if(livro.getISBN()==null) {
+			livro.setISBN(livroAtual.getISBN());
+		} else {
+			livroRepository.findByISBN(livro.getISBN()).ifPresent(l -> {
+				throw new IsbnExistenteException(l.getISBN());
+			});
+		}
+		BeanUtils.copyProperties(livro, livroAtual, "id");
+		return salvarLivro(livroAtual);
 	}
 	
 	
